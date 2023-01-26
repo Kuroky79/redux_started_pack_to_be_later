@@ -1,7 +1,8 @@
-import {createStore, combineReducers} from "redux";
+import {createStore, combineReducers, applyMiddleware} from "redux";
 import {reducer} from "./reducer";
 import {customerReducer} from "./CustomerReducer";
 import {composeWithDevTools} from "redux-devtools-extension";
+import thunk from "redux-thunk";
 
 
 const rootReducer = combineReducers({ // склейка reducers
@@ -9,4 +10,4 @@ const rootReducer = combineReducers({ // склейка reducers
     customers: customerReducer,
 })
 
-export const store = createStore(rootReducer, composeWithDevTools())
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
